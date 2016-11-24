@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="tma.pdkhoa.musicmanager.client.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Perspective"
+            class="tma.pdkhoa.musicmanager.client.Perspective"
+            id="MusicClient.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="tma.pdkhoa.musicmanager.client.view.ListMusicView"
+            id="views.listmusic"
+            name="List Music"
+            restorable="true">
+      </view>
+      <view
+            class="tma.pdkhoa.musicmanager.client.view.GridLayoutComplex"
+            id="tma.pdkhoa.musicmanager.client.view.GridLayoutComplex"
+            name="Grid Layout Complex">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <view
+               standalone="true"
+               minimized="false"
+               relative="org.eclipse.ui.editorss"
+               relationship="left"
+               id="views.listmusic">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               label="File">
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Exit">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         id="rcpproduct"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="MusicClient.application"
+            name="Music RCP Client">
+         <property
+               name="appName"
+               value="Music RCP Client">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="myproduct"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="MusicClient.application"
+            name="MusicRCPClient">
+         <property
+               name="appName"
+               value="MusicRCPClient">
+         </property>
+      </product>
+   </extension>
+
+</plugin>
+
