@@ -6,16 +6,17 @@ import tma.pdkhoa.musicmanager.api.entity.MusicVO;
 
 
 public interface MusicService {
-
-	public void updateMusic(MusicVO music);
+    public static final String SERVICE_NAME="bean:name=musicService";
+    
+	public void updateMusic(MusicVO music) throws MusicException;
 	
-	public void insertMusic(MusicVO music);
+	public void insertMusic(MusicVO music) throws MusicException;
 	
-	public void deleteMusic(int id);
+	public void deleteMusic(int id) throws MusicException;
 	
-	public List<MusicVO> getListMusic();
+	public List<MusicVO> getListMusic() throws MusicException;
 	
-	public MusicVO findByID(int id);
+	public MusicVO findByID(int id) throws MusicException;
 	
 	
 }

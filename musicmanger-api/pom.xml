@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>tma.pdkhoa.musicmanager</groupId>
@@ -34,6 +33,104 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+    <!-- generate java from hbm -->
+            <!--plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>hibernate3-maven-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>hbm2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <components>
+                        <component>
+                            <name>hbm2java</name>
+                            <implementation>configuration</implementation>
+                            <outputDirectory>target/generated-sources/hibernate3</outputDirectory>
+                        </component>
+                    </components>
+                    <componentProperties>
+                        <drop>true</drop>
+                        <jdk5>true</jdk5>
+                        <configurationfile>/src/main/resources/hibernate.cfg.xml</configurationfile>
+                    </componentProperties>
+                </configuration>
+            </plugin -->
+
+<!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <dependencies>
+                <dependency>
+                    <groupId>org.codehaus.xdoclet</groupId>
+                    <artifactId>xdoclet</artifactId>
+                    <version>2.0.7</version>
+                </dependency>
+                <dependency>
+                    <groupId>xjavadoc</groupId>
+                    <artifactId>xjavadoc</artifactId>
+                    <version>1.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                    <version>1.1.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>commons-collections</groupId>
+                    <artifactId>commons-collections</artifactId>
+                    <version>20040616</version>
+                </dependency>
+                <dependency>
+                    <groupId>xdoclet</groupId>
+                    <artifactId>xdoclet-hibernate-module</artifactId>
+                    <version>1.2.3</version>
+                </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <target>
+                                <property name="src.dir" value="src" />
+
+                                <property name="build.dir" value="build" />
+                                <property name="classes.dir" value="${build.dir}/classes" />
+                                <property name="jar.dir" value="${build.dir}/jar" />
+
+                                <property name="temp-hbm.dir" value="src/hbm" />
+
+                                <echo>***********************</echo>
+                                <delete dir="${temp-hbm.dir}" />
+                                <mkdir dir="${temp-hbm.dir}" />
+                                <taskdef name="xdoclet" classname="xdoclet.modules.hibernate.HibernateDocletTask" />
+                                <xdoclet>
+                                    <fileset dir="${src.dir}">
+                                        <include name="tma/**/*.java" />
+                                    </fileset>
+                                    <component classname="org.xdoclet.plugin.hibernate.HibernateMappingPlugin" destdir="${temp-hbm.dir}"
+                                        version="3.0" />
+
+                                </xdoclet>
+
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+              -->
         </plugins>
     </build>
 </project>

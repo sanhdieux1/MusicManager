@@ -7,9 +7,9 @@ import java.util.Properties;
 import javax.management.MalformedObjectNameException;
 import javax.sql.DataSource;
 
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -76,7 +76,7 @@ public class AppConfig {
     }
     @Bean
     public JMSConnection getJMSConnection(){
-        return new JMSConnection();
+        return JMSConnection.getInstance();
     }
     
     @Bean
@@ -98,7 +98,7 @@ public class AppConfig {
     @DependsOn("rmiRegistry")
     public ConnectorServerFactoryBean connectorServerFactoryBean() throws MalformedObjectNameException{
         ConnectorServerFactoryBean connectorServerFactoryBean = new ConnectorServerFactoryBean();
-        connectorServerFactoryBean.setObjectName("connector:name=rmi");
+        connectorServerFactoryBean.setObjectName("connector:name=MusicServiceConnector");
         connectorServerFactoryBean.setServiceUrl("service:jmx:rmi://127.0.0.1/jndi/rmi://127.0.0.1:10099/"+environment.getRequiredProperty("jmx.service_name"));
         return connectorServerFactoryBean;
     }
@@ -109,7 +109,7 @@ public class AppConfig {
     public MBeanExporter mBeanExporter(MusicService musicService){
         MBeanExporter mBeanExporter = new MBeanExporter();
         Map<String,Object> beans = new HashMap<String,Object>();
-        beans.put("bean:name=musicService",musicService);
+        beans.put(MusicService.SERVICE_NAME,musicService);
         mBeanExporter.setBeans(beans);
         return mBeanExporter;
     }
@@ -118,6 +118,7 @@ public class AppConfig {
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
+        properties.put("hibernate.hbm2ddl.auto",environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
         return properties;
     }
 }

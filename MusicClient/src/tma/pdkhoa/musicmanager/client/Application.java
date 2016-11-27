@@ -1,5 +1,7 @@
 package tma.pdkhoa.musicmanager.client;
 
+import java.net.URL;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
@@ -29,6 +31,7 @@ public class Application implements IApplication {
      * IApplicationContext)
      */
     public Object start(IApplicationContext context) {
+
         // create JMS listen
         createJMSListener();
 
@@ -49,7 +52,7 @@ public class Application implements IApplication {
 
     private void createJMSListener() {
         
-        Job listener = new JMXListenerJob(PropertiesMessage.getMessage("jmx.started"));
+        job = new JMXListenerJob(PropertiesMessage.getMessage("jmx.started"));
         job.schedule();
     }
 

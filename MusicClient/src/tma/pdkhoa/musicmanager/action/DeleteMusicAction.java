@@ -13,7 +13,7 @@ public class DeleteMusicAction extends SelectionAdapter {
     @Override
     public void widgetSelected(SelectionEvent e) {
         super.widgetSelected(e);
-        MusicManagement.INSTANCE.deleteMusic(m_id);
+        MusicManagement.getInstance().deleteMusic(m_id);
     }
     
 }

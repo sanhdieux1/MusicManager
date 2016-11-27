@@ -3,6 +3,7 @@ package tma.pdkhoa.musicmanager.api.dao;
 import java.util.List;
 
 import tma.pdkhoa.musicmanager.api.entity.MusicVO;
+import tma.pdkhoa.musicmanager.api.service.MusicException;
 
 public interface ModelDAO {
 
@@ -12,7 +13,7 @@ public interface ModelDAO {
 
     public <T> int deleteByID(int id);
 
-    public <T> List<T> getAll();
+    public <T> List<T> getAll() throws MusicException;
 
     public <T> T findByID(int id);
 
